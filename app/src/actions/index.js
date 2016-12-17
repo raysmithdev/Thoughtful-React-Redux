@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+const apiUrl = 'https://nameless-depths-24365.herokuapp.com'
 
 const receiveData = (posts) => {
   return {
@@ -9,7 +10,7 @@ const receiveData = (posts) => {
 
 export const addPost = (from, title, body) =>  {
   return dispatch => {
-    return fetch('http://localhost:8080/create-post', {
+    return fetch(apiUrl + '/create-post', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +28,7 @@ export const addPost = (from, title, body) =>  {
 
 export const getPosts = () => {
   return dispatch => {
-    return fetch('http://localhost:8080/posts')
+    return fetch(apiUrl + '/posts')
            .then(response => response.json())
            .then(posts => dispatch(receiveData(posts)))
   }
